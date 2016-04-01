@@ -1,0 +1,39 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+
+//@import "../pages/home/home";
+//@import "../pages/login/login";
+
+ion-menu ion-content {
+  background-color: white;
+}
+
+// Remove top border of all lists
+ion-list > .item:first-child, ion-list > ion-item-sliding:first-child .item {
+  border-top: none;
+}
+
+//ion-card ion-list > .item:last-child, ion-card ion-list > ion-item-sliding:last-child .item {
+//  border-bottom: none;
+//}
+
+// Add border to last input field in a form list, so the input line shows up for the last input in the list
+form ion-list > .item:last-child .item-inner, form ion-list > ion-item-sliding:last-child .item .item-inner {
+  border-bottom: 1px solid #c8c7cc;
+}
+
+// Remove bottom border of off-canvas menu item list
+ion-menu ion-content ion-list > .item:last-child .item-inner {
+  border-bottom: none;
+}
+
+// Remove bottom border when input filed becomes invalid
+ion-input.ng-invalid.ng-touched:after {
+  border-bottom: none;
+}

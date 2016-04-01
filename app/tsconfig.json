@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "sourceMap": true
+  },
+  "files": [
+    "typings/main.d.ts",
+    "typings/angular2-meteor/angular2-meteor.d.ts"
+  ]
+}
