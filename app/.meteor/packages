@@ -19,6 +19,6 @@ mobile-status-bar
 
 standard-minifier-css
 standard-minifier-js
-angular2-compilers@0.5.4
+angular2-compilers
 modules
 barbatus:angular2-runtime

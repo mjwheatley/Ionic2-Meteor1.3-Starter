@@ -1,20 +1,23 @@
 import {MeteorComponent} from 'angular2-meteor';
-import {App, IonicApp, Platform} from 'ionic-framework/index';
+import {App, IonicApp, Platform} from 'ionic-angular';
 import {Component, NgZone, provide} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {MeteorIonicApp} from "./lib/meteor-ionic-app";
 
 /*********/
 /* Pages */
 import {HomePage} from './pages/home/home';
+import {Constants} from "../lib/Constants";
 
-declare var Session;
+declare var Meteor;
+declare var device;
 
-@App({
+@MeteorIonicApp({
     templateUrl: '/client/app.html',
     config: { // http://ionicframework.com/docs/v2/api/config/Config/
-        //mode: 'md',
-        //pageTransition: 'ios',
+        //mode: Constants.STYLE.MD,
+        //pageTransition: Constants.STYLE.IOS,
         //swipeBackEnabled: false,
         //tabbarPlacement: 'top'
     },
@@ -40,12 +43,14 @@ class MyApp extends MeteorComponent {
                 private zone:NgZone,
                 private translate:TranslateService) {
         super();
-        this.translate = translate;
+    }
+
+    ngOnInit():void {
         this.initializeApp();
 
         // set the root (or first) page
         //if (Meteor.user()) {
-            this.rootPage = HomePage;
+        this.rootPage = HomePage;
         //} else {
         //    this.rootPage = LoginPage;
         //}
@@ -54,17 +59,18 @@ class MyApp extends MeteorComponent {
         this.appName = Meteor.settings.public.appName;
 
         // set our app's pages
+        // title references a key in the language JSON to be translated by the translate pipe in the HTML
         this.pages = [
-            {icon: "home", title: 'home.title', component: HomePage},
+            {icon: "home", title: "home.title", component: HomePage},
         ];
 
-        Tracker.autorun(() => zone.run(() => {
+        Tracker.autorun(() => this.zone.run(() => {
             // Use this to update component variables based on reactive sources.
             // (i.e. Monogo collections or Session variables)
         }));
     }
 
-    initializeApp() {
+    private initializeApp() {
         this.platform.ready().then(() => {
             // The platform is now ready. Note: if this callback fails to fire, follow
             // the Troubleshooting guide for a number of possible solutions:
@@ -81,12 +87,12 @@ class MyApp extends MeteorComponent {
             // good for dark backgrounds and light text:
             // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
 
-
             this.initializeTranslateServiceConfig();
+            this.setStyle();
         });
     }
 
-    initializeTranslateServiceConfig() {
+    private initializeTranslateServiceConfig() {
         var prefix = '/i18n/';
         var suffix = '.json';
 
@@ -94,15 +100,15 @@ class MyApp extends MeteorComponent {
         userLang = /(en|es)/gi.test(userLang) ? userLang : 'en';
 
         this.translate.setDefaultLang('en');
-        let langPref = Session.get('language');
+        let langPref = Session.get(Constants.SESSION.LANGUAGE);
         if (langPref) {
             userLang = langPref;
         }
-        Session.set('language', userLang);
+        Session.set(Constants.SESSION.LANGUAGE, userLang);
         this.translate.use(userLang);
     }
 
-    openPage(page) {
+    private openPage(page) {
         let setRoot = false;
         if (page.component === HomePage) {
             setRoot = true;
@@ -110,22 +116,42 @@ class MyApp extends MeteorComponent {
         this.navigate({page: page.component, setRoot: setRoot});
     }
 
-    logout():void {
+    private logout():void {
         Meteor.logout();
         //this.navigate({page: LoginPage, setRoot: true});
     }
 
-    navigate(location:{page:any, setRoot:boolean}):void {
+    private navigate(location:{page:any, setRoot:boolean}):void {
         // close the menu when clicking a link from the menu
         // getComponent selector is the component id attribute
         this.app.getComponent('leftMenu').close();
         // navigate to the new page if it is not the current page
         let nav = this.app.getComponent('nav');
         if (location.setRoot) {
-            //nav.setRoot(location.page);
-            nav.popToRoot();
+            nav.setRoot(location.page);
         } else {
             nav.push(location.page);
         }
+    }
+
+    private setStyle():void {
+        // Change value of the meta tag
+        var links:any = document.getElementsByTagName("link");
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            if (link.getAttribute("rel").indexOf("style") != -1 && link.getAttribute("title")) {
+                link.disabled = true;
+                if (link.getAttribute("title") === this.getBodyStyle())
+                    link.disabled = false;
+            }
+        }
+    }
+
+    private getBodyStyle():string {
+        var bodyTag:any = document.getElementsByTagName("body")[0];
+        var bodyClass = bodyTag.className;
+        var classArray = bodyClass.split(" ");
+        var bodyStyle = classArray[0];
+        return bodyStyle;
     }
 }

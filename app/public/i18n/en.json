@@ -1,8 +1,24 @@
 {
+  "general": {
+    "ok": "OK",
+    "no": "NO",
+    "yes": "YES",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "accept": "Accept"
+  },
   "home": {
-    "title": "Home"
+    "title": "Home",
+    "i18n": "Internationalization (i18n)",
+    "i18nDescription": "This application also features support for internationalization using the ng2-translate node module."
   },
   "welcome-header": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "description": "This start project is to help you get a Meteor application, styled using Ionic 2, up and running in record time.",
+    "followIonicTutorial": "Continue by follow along on the tutorial section of the Ionic docs!"
+  },
+  "language-select": {
+    "header": "Select Language",
+    "language": "Language"
   }
 }

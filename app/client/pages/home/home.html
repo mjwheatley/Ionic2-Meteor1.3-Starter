@@ -2,16 +2,19 @@
     <button menuToggle (click)="menuClick()">
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{"home.title" | translate}}</ion-title>
+    <ion-title>
+        {{"home.title" | translate}}
+    </ion-title>
 </ion-navbar>
 
 
 <ion-content>
     <welcome-header></welcome-header>
     <ion-card>
-        <ion-list-header>i18n</ion-list-header>
+        <ion-list-header>{{"home.i18n" | translate}}</ion-list-header>
         <ion-card-content>
-            This application also features support for internationalization using the ng2-translate node module.
+            {{"home.i18nDescription" | translate}}
         </ion-card-content>
     </ion-card>
+    <language-select></language-select>
 </ion-content>

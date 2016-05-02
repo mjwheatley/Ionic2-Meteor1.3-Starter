@@ -2,7 +2,7 @@
  * Created by mjwheatley on 3/2/16.
  */
 import {Component} from 'angular2/core';
-import {IONIC_DIRECTIVES} from 'ionic-framework/index';
+import {IONIC_DIRECTIVES} from 'ionic-angular';
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 
 @Component({
@@ -12,9 +12,6 @@ import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
     pipes: [TranslatePipe]
 })
 export class WelcomeHeaderComponent {
-    constructor(
-        private translate:TranslateService
-    ) {
-        this.translate = translate;
+    constructor(private translate:TranslateService) {
     }
 }

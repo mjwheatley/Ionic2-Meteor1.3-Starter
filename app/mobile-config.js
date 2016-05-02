@@ -36,8 +36,6 @@ App.info({
 //    'ipad_landscape_2x': 'resources/ios/splash/splash-1024x768@2x.png',
 //
 //    // Android
-//    'android_ldpi_portrait': 'resources/android/splash/splash-200x320.png',
-//    'android_ldpi_landscape': 'resources/android/splash/splash-320x200.png',
 //    'android_mdpi_portrait': 'resources/android/splash/splash-320x480.png',
 //    'android_mdpi_landscape': 'resources/android/splash/splash-480x320.png',
 //    'android_hdpi_portrait': 'resources/android/splash/splash-480x800.png',
@@ -53,6 +51,7 @@ App.setPreference('StatusBarOverlaysWebView', 'false');
 App.accessRule('http://localhost:3000/*')
 App.accessRule('https://localhost:3000/*');
 App.accessRule('http://meteor.local');
+App.accessRule('http://localhost:12432/');
 App.accessRule('http://10.0.2.2:3000/*');
 App.accessRule('http://10.35.3.197:3000/*');
 App.accessRule('http://10.35.2.163:3000/*');

@@ -1,8 +1,25 @@
 {
+  "general": {
+    "ok": "DE ACUERDO",
+    "no": "NO",
+    "yes": "SI",
+    "cancel": "Cancel",
+    "continue": "Continuar",
+    "accept": "Aceptar"
+  },
   "home": {
-    "title": "Casa"
+    "title": "Casa",
+    "i18n": "Internacionalización ( i18n )",
+    "i18nDescription": "Esta aplicación también cuenta con el apoyo a la internacionalización mediante el módulo de nodo de NG2 - traducir."
+
   },
   "welcome-header": {
-    "welcome": "Bienvenido"
+    "welcome": "Bienvenido",
+    "description": "Este proyecto de inicio es para ayudarle a obtener una aplicación Meteor , de estilo jónico usando 2 , en funcionamiento en un tiempo récord",
+    "followIonicTutorial": "Continuar por seguir a lo largo de la sección de tutoriales de los documentos iónicos !"
+  },
+  "language-select": {
+    "header": "Seleccione el idioma",
+    "language": "Idioma"
   }
 }
