@@ -45,7 +45,7 @@ App.info({
 //});
 
 App.setPreference('BackupWebStorage', 'local');
-App.setPreference('StatusBarOverlaysWebView', 'false');
+App.setPreference('StatusBarOverlaysWebView', 'true');
 //App.setPreference('StatusBarBackgroundColor', '#000000');
 
 App.accessRule('http://localhost:3000/*')
