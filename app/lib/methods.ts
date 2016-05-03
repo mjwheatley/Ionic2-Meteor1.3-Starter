@@ -13,7 +13,7 @@ Meteor.methods({
             if (!user) {
                 throw new Meteor.Error("account-not-found", "Invalid User ID");
             } else {
-                // Save you information to a Mongo Collection
+                // Save your information to a Mongo Collection
             }
         }
     }

@@ -1,14 +1,14 @@
 import {MeteorComponent} from 'angular2-meteor';
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {Component, NgZone, provide} from 'angular2/core';
+import {Component, NgZone, provide, Type} from 'angular2/core';
 import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {MeteorIonicApp} from "./lib/meteor-ionic-app";
+import {Constants} from "../lib/Constants";
 
 /*********/
 /* Pages */
 import {HomePage} from './pages/home/home';
-import {Constants} from "../lib/Constants";
 
 declare var Meteor;
 declare var device;
@@ -33,10 +33,10 @@ declare var device;
 })
 class MyApp extends MeteorComponent {
     // Set the root (or first) page
-    rootPage:any;
-    pages:Array<{icon?: string, title: string, component: any}>;
-    appName:string;
-    //user:Meteor.User;
+    private rootPage:Type;
+    private pages:Array<{icon?: string, title: string, component: Type}>;
+    private appName:string;
+    //private user:Meteor.User;
 
     constructor(private app:IonicApp,
                 private platform:Platform,

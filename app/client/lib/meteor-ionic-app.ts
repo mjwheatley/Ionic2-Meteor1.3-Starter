@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
-
 import 'reflect-metadata';
 import 'zone.js/dist/zone';
 import {provide, Type, Provider, IterableDiffers, Component} from 'angular2/core';
