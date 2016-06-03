@@ -1,7 +1,7 @@
 /**
  * Created by mjwheatley on 5/2/16.
  */
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {IONIC_DIRECTIVES, NavController, Alert} from 'ionic-angular';
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 import {Constants} from "../../../lib/Constants";
