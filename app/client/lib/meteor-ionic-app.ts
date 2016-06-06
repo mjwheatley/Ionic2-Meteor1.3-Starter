@@ -1,9 +1,9 @@
+import 'reflect-metadata';
+import 'zone.js/dist/zone';
 import {provide, Type, Provider, IterableDiffers, Component, PLATFORM_DIRECTIVES, enableProdMode} from '@angular/core';
 import {METEOR_PROVIDERS} from 'angular2-meteor';
 import {bootstrap} from 'angular2-meteor-auto-bootstrap';
 import {IonicApp, IONIC_DIRECTIVES, ionicProviders, postBootstrap} from 'ionic-angular';
-
-import { Meteor } from 'meteor/meteor';
 
 export function MeteorIonicApp(args: any = {}) {
     return function(cls) {

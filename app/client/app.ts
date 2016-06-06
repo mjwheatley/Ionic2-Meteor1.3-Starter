@@ -1,6 +1,6 @@
 import {MeteorComponent} from 'angular2-meteor';
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {Component, NgZone, provide, Type} from '@angular/core';
+import {Component, NgZone, provide, Type, ViewChild} from '@angular/core';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {MeteorIonicApp} from "./lib/meteor-ionic-app";
@@ -33,10 +33,10 @@ declare var device;
 })
 class MyApp extends MeteorComponent {
     // Set the root (or first) page
-    private rootPage:Type;
-    private pages:Array<{icon?: string, title: string, component: Type}>;
+    private rootPage:Type = HomePage;
+    private pages:Array<{icon?: string, title: string, component: Type, rootPage:boolean}>;
     private appName:string;
-    //private user:Meteor.User;
+    private user:Meteor.User;
 
     @ViewChild('leftMenu') leftMenu:any;
     @ViewChild('content') nav:any;    
@@ -51,20 +51,13 @@ class MyApp extends MeteorComponent {
     ngOnInit():void {
         this.initializeApp();
 
-        // set the root (or first) page
-        //if (Meteor.user()) {
-        this.rootPage = HomePage;
-        //} else {
-        //    this.rootPage = LoginPage;
-        //}
-
         // set the nav menu title to the application name from settings.json
         this.appName = Meteor.settings.public.appName;
 
         // set our app's pages
         // title references a key in the language JSON to be translated by the translate pipe in the HTML
         this.pages = [
-            {icon: "home", title: "home.title", component: HomePage},
+            {icon: "home", title: "home.title", component: HomePage, rootPage: true},
         ];
 
         Tracker.autorun(() => this.zone.run(() => {
@@ -112,14 +105,11 @@ class MyApp extends MeteorComponent {
     }
 
     private openPage(page) {
-        let setRoot = false;
-        if (page.component === HomePage) {
-            setRoot = true;
-        }
-        this.navigate({page: page.component, setRoot: setRoot});
+        this.navigate({page: page.component, setRoot: page.setRoot});
     }
 
     private logout():void {
+        this.user = null;
         Meteor.logout();
         //this.navigate({page: LoginPage, setRoot: true});
     }
@@ -127,13 +117,19 @@ class MyApp extends MeteorComponent {
     private navigate(location:{page:any, setRoot:boolean}):void {
         // close the menu when clicking a link from the menu
         // getComponent selector is the component id attribute
-        this.leftMenu.close();
-        // navigate to the new page if it is not the current page        
-        if (location.setRoot) {
-            this.nav.setRoot(location.page);
-        } else {
-            this.nav.push(location.page);
-        }
+        this.leftMenu.close().then(() => {
+            if (location.setRoot) {
+                this.nav.setRoot(location.page);
+            } else {
+                if (location.page) {
+                    // navigate to the new page if it is not the current page
+                    let viewCtrl = this.nav.getActive();
+                    if (viewCtrl.componentType !== location.page) {
+                        this.nav.push(location.page);
+                    }
+                }
+            }
+        });
     }
 
     private setStyle():void {
