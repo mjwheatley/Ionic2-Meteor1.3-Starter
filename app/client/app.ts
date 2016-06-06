@@ -63,6 +63,15 @@ class MyApp extends MeteorComponent {
         Tracker.autorun(() => this.zone.run(() => {
             // Use this to update component variables based on reactive sources.
             // (i.e. Monogo collections or Session variables)
+
+            // User will be null upon initialization
+            this.user = Meteor.user();
+            console.log("user: ", this.user);
+
+            // Meteor.user() is a reactive variable.
+            if (Meteor.user()) {
+                // Do something when user is present after initialization or after log in.
+            }
         }));
     }
 
