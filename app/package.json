@@ -10,17 +10,18 @@
     "watch:css": "nodemon -w client -e scss -x npm run build:ios-css build:md-css"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "angular2-meteor": "0.5.3",
-    "angular2-meteor-auto-bootstrap": "0.5.2",
-    "es6-promise": "3.0.2",
-    "es6-shim": "0.35.0",
-    "ionic-angular": "2.0.0-beta.4",
-    "ionicons": "3.0.0-alpha.3",
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
+    "angular2-meteor": "0.5.5",
+    "angular2-meteor-auto-bootstrap": "0.5.5",
+    "es6-promise": "3.2.1",
+    "es6-shim": "0.35.1",
+    "ionic-angular": "2.0.0-beta.7",
+    "ionicons": "3.0.0",
     "meteor-node-stubs": "0.2.3",
-    "ng2-translate": "1.8.0",
+    "ng2-translate": "2.1.0",
     "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
+    "rxjs": "5.0.0-beta.6",
     "zone.js": "0.6.12"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-<ion-menu id="leftMenu" [content]="content">
+<ion-menu #leftMenu [content]="content">
 
     <ion-toolbar primary>
         <ion-title>{{appName}}</ion-title>
@@ -6,7 +6,8 @@
 
     <ion-content>
         <ion-list>
-            <button ion-item *ngFor="#page of pages" (click)="openPage(page)">
+            <button ion-item *ngFor="let page of pages" (click)="openPage(page)">
+                <ion-icon name="{{page.icon}}"></ion-icon>
                 {{page.title | translate}}
             </button>
         </ion-list>
@@ -14,4 +15,4 @@
 
 </ion-menu>
 
-<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>

@@ -1,7 +1,7 @@
 import {MeteorComponent} from 'angular2-meteor';
 import {App, IonicApp, Platform} from 'ionic-angular';
-import {Component, NgZone, provide, Type} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Component, NgZone, provide, Type} from '@angular/core';
+import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {MeteorIonicApp} from "./lib/meteor-ionic-app";
 import {Constants} from "../lib/Constants";
@@ -38,6 +38,9 @@ class MyApp extends MeteorComponent {
     private appName:string;
     //private user:Meteor.User;
 
+    @ViewChild('leftMenu') leftMenu:any;
+    @ViewChild('content') nav:any;    
+    
     constructor(private app:IonicApp,
                 private platform:Platform,
                 private zone:NgZone,
@@ -124,13 +127,12 @@ class MyApp extends MeteorComponent {
     private navigate(location:{page:any, setRoot:boolean}):void {
         // close the menu when clicking a link from the menu
         // getComponent selector is the component id attribute
-        this.app.getComponent('leftMenu').close();
-        // navigate to the new page if it is not the current page
-        let nav = this.app.getComponent('nav');
+        this.leftMenu.close();
+        // navigate to the new page if it is not the current page        
         if (location.setRoot) {
-            nav.setRoot(location.page);
+            this.nav.setRoot(location.page);
         } else {
-            nav.push(location.page);
+            this.nav.push(location.page);
         }
     }
 
