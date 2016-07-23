@@ -6,12 +6,13 @@
 // App Shared Sass variables belong in app.variables.scss.
 //@import "../pages/home/home";
 //@import "../pages/login/login";
-
-@import 'app.variables';
+@import 'stylesheets/main';
+@import 'pages/home/home';
 
 ion-menu ion-content {
-    background-color: white;
+  background-color: white;
 }
+
 //
 //// Remove top border of all lists
 //ion-list > .item:first-child,

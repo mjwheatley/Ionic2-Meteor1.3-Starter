@@ -1,6 +1,6 @@
 {
   "public": {
-    "appName": "Meteor-v1.3-Ionic2-Starter"
+    "appName": "Meteor-Ionic2-Starter"
   },
 
   "sample": "config/development/settings.json"

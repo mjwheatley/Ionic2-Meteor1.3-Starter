@@ -1,5 +1,6 @@
 {
   "public": {
+    "appName": "Meteor-Ionic2-Starter"
   },
 
   "sample": "value"

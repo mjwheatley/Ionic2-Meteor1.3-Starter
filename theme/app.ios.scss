@@ -32,3 +32,6 @@ $label-ios-text-color: black;
 // App iOS Only Sass
 // --------------------------------------------------
 // CSS that should only apply to the iOS app
+ion-menu ion-title {
+  padding: 0 12px;
+}

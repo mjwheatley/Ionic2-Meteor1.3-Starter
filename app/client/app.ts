@@ -1,9 +1,9 @@
 import {MeteorComponent} from 'angular2-meteor';
-import {App, IonicApp, Platform} from 'ionic-angular';
+import {App, Platform} from 'ionic-angular';
 import {Component, NgZone, provide, Type, ViewChild} from '@angular/core';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
-import {MeteorIonicApp} from "./lib/meteor-ionic-app";
+import {MeteorIonicApp} from "./lib/_meteor-ionic-app";
 import {Constants} from "../lib/Constants";
 
 /*********/
@@ -15,12 +15,6 @@ declare var device;
 
 @MeteorIonicApp({
     templateUrl: '/client/app.html',
-    config: { // http://ionicframework.com/docs/v2/api/config/Config/
-        //mode: Constants.STYLE.MD,
-        //pageTransition: Constants.STYLE.IOS,
-        //swipeBackEnabled: false,
-        //tabbarPlacement: 'top'
-    },
     providers: [
         HTTP_PROVIDERS,
         provide(TranslateLoader, {
@@ -29,6 +23,12 @@ declare var device;
         }),
         TranslateService
     ],
+    //config: { // http://ionicframework.com/docs/v2/api/config/Config/
+    //    //mode: Constants.STYLE.MD,
+    //    //pageTransition: Constants.STYLE.IOS,
+    //    //swipeBackEnabled: false,
+    //    //tabbarPlacement: 'top'
+    //},
     pipes: [TranslatePipe]
 })
 class MyApp extends MeteorComponent {
@@ -39,17 +39,17 @@ class MyApp extends MeteorComponent {
     private user:Meteor.User;
 
     @ViewChild('leftMenu') leftMenu:any;
-    @ViewChild('content') nav:any;    
-    
-    constructor(private app:IonicApp,
+    @ViewChild('content') nav:any;
+
+    constructor(private app:App,
                 private platform:Platform,
                 private zone:NgZone,
                 private translate:TranslateService) {
         super();
+        this.initializeApp();
     }
 
     ngOnInit():void {
-        this.initializeApp();
 
         // set the nav menu title to the application name from settings.json
         this.appName = Meteor.settings.public.appName;
@@ -73,6 +73,12 @@ class MyApp extends MeteorComponent {
                 // Do something when user is present after initialization or after log in.
             }
         }));
+
+        Tracker.autorun(() => this.zone.run(() => {
+            if (Session.get(Constants.SESSION.PLATFORM_READY)) {
+                this.platformReady();
+            }
+        }));
     }
 
     private initializeApp() {
@@ -92,9 +98,13 @@ class MyApp extends MeteorComponent {
             // good for dark backgrounds and light text:
             // StatusBar.setStyle(StatusBar.LIGHT_CONTENT)
 
-            this.initializeTranslateServiceConfig();
-            this.setStyle();
+            Session.set(Constants.SESSION.PLATFORM_READY, true);
         });
+    }
+
+    private platformReady():void {
+        this.initializeTranslateServiceConfig();
+        this.setStyle();
     }
 
     private initializeTranslateServiceConfig() {

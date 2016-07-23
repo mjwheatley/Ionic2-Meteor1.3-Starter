@@ -3,7 +3,8 @@
  */
 export class Constants {
     public static SESSION:any = {
-        LANGUAGE: "language"
+        LANGUAGE: "language",
+        PLATFORM_READY: "platformReady"
     };
     public static DEVICE:any = {
         IOS: "iOS",
