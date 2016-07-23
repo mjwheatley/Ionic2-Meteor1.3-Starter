@@ -34,7 +34,7 @@ declare var device;
 class MyApp extends MeteorComponent {
     // Set the root (or first) page
     private rootPage:Type = HomePage;
-    private pages:Array<{icon?: string, title: string, component: Type, rootPage:boolean}>;
+    private pages:Array<IPage>;
     private appName:string;
     private user:Meteor.User;
 
@@ -123,8 +123,8 @@ class MyApp extends MeteorComponent {
         this.translate.use(userLang);
     }
 
-    private openPage(page) {
-        this.navigate({page: page.component, setRoot: page.setRoot});
+    private openPage(page:IPage) {
+        this.navigate({page: page.component, setRoot: page.rootPage});
     }
 
     private logout():void {
@@ -171,4 +171,11 @@ class MyApp extends MeteorComponent {
         var bodyStyle = classArray[0];
         return bodyStyle;
     }
+}
+
+interface IPage {
+    icon?:string,
+    title:string,
+    component:Type,
+    rootPage:boolean
 }
