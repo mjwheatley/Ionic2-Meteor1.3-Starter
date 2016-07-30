@@ -13,33 +13,38 @@ ion-menu ion-content {
   background-color: white;
 }
 
-//
-//// Remove top border of all lists
-//ion-list > .item:first-child,
-//ion-list > ion-item-sliding:first-child .item {
-//    border-top: none;
-//}
-//
-//// Add border to last input field in a form list, so the input line shows up for the last input in the list
-//form ion-list > .item:last-child .item-inner,
-//form ion-list > ion-item-sliding:last-child .item .item-inner {
-//    border-bottom: 1px solid #c8c7cc;
-//}
-//// Remove bottom border of off-canvas menu item list
-//ion-menu ion-content ion-list > .item:last-child .item-inner {
-//    border-bottom: none;
-//}
-//// Remove bottom border when input filed becomes invalid
-//ion-input.ng-invalid.ng-touched:after {
-//    border-bottom: none;
-//}
-//
-//ion-avatar.acount-pic > img {
-//    max-width: 8rem;
-//    max-height: 8rem;
-//    border-radius: 4rem;
-//}
-//
-//ion-header-bar[primary] {
-//    background: map-get($colors, primary);
-//}
+// Remove top border of all lists
+ion-list > .item:first-child, ion-list > ion-item-sliding:first-child .item {
+  border-top: none;
+}
+
+// Remove bottom border of last item in a card list
+ion-card ion-list > .item:last-child .item, ion-card ion-list > ion-item-sliding:last-child .item,
+form ion-list > .item:last-child {
+  border-bottom: none;
+}
+
+// Add border to last input field in a form list, so the input line shows up for the last input in the list
+form ion-list > .item:last-child .item-inner, form ion-list > ion-item-sliding:last-child .item .item-inner {
+  border-bottom: 1px solid #dedede;
+}
+
+// Remove bottom border of off-canvas menu item list
+ion-menu ion-content ion-list > .item:last-child .item-inner {
+  border-bottom: none;
+}
+
+// Remove bottom border when input filed becomes invalid
+ion-input.ng-invalid.ng-touched:after {
+  border-bottom: none;
+}
+
+// Fix for ion-labels not appearing on iOS
+ion-label[stacked],
+ion-label[floating] {
+  flex-basis: auto;
+}
+
+.toolbar-title {
+  overflow: visible;
+}
