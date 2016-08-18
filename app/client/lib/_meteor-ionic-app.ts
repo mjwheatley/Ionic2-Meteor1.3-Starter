@@ -3,6 +3,7 @@ import 'zone.js/dist/zone';
 import {provide, Type, Provider, IterableDiffers, Component, PLATFORM_DIRECTIVES, enableProdMode} from '@angular/core';
 import {METEOR_PROVIDERS} from 'angular2-meteor';
 import {IONIC_DIRECTIVES, ionicProviders, ionicBootstrap} from 'ionic-angular';
+declare var Reflect;
 
 export function MeteorIonicApp(args:any) {
     return function(cls) {

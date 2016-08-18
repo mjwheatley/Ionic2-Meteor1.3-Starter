@@ -1,7 +1,7 @@
 /**
  * Created by mjwheatley on 5/2/16.
  */
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {IONIC_DIRECTIVES, NavController, Alert} from 'ionic-angular';
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 import {Constants} from "../../../lib/Constants";
@@ -16,8 +16,16 @@ export class LanguageSelectComponent {
     private language:String;
     private langCode:String;
 
-    constructor(private nav:NavController, private translate:TranslateService) {
+    constructor(private nav:NavController, private zone:NgZone, private translate:TranslateService) {
         this.setLanguage();
+    }
+
+    ngOnInit():void {
+        Tracker.autorun(() => this.zone.run(() => {
+            if (Session.get(Constants.SESSION.LANGUAGE)) {
+                this.setLanguage();
+            }
+        }));
     }
 
     private selectLanguage() {
@@ -43,6 +51,7 @@ export class LanguageSelectComponent {
         });
         this.nav.present(alert);
     }
+
     private setLanguage() {
         this.langCode = Session.get(Constants.SESSION.LANGUAGE);
         let language = "";
