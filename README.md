@@ -2,7 +2,7 @@
 
 ###Please review the [Ionic2 changelog](https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
 
-###Meteor 1.4.0.1
+###Meteor 1.4.1.1
 ###Ionic2 Beta 11
 ###Angular rc4
 
