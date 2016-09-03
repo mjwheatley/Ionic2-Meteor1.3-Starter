@@ -1,10 +1,10 @@
-#Updated to Ionic2 Beta 10
+#Updated to Ionic2 Beta 11
 
 ###Please review the [Ionic2 changelog](https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
 
 ###Meteor 1.4.0.1
-###Ionic2 Beta 10
-###Angular rc3
+###Ionic2 Beta 11
+###Angular rc4
 
 #Getting Started
 ```

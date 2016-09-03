@@ -2,21 +2,22 @@
  * Created by mjwheatley on 5/2/16.
  */
 import {Component, NgZone} from '@angular/core';
-import {IONIC_DIRECTIVES, NavController, Alert} from 'ionic-angular';
+import {AlertController} from 'ionic-angular';
 import {TranslateService, TranslatePipe} from 'ng2-translate/ng2-translate';
 import {Constants} from "../../../lib/Constants";
 
 @Component({
     selector: 'language-select',
     templateUrl: '/client/components/language-select/language-select.html',
-    directives: [IONIC_DIRECTIVES],
     pipes: [TranslatePipe]
 })
 export class LanguageSelectComponent {
     private language:String;
     private langCode:String;
 
-    constructor(private nav:NavController, private zone:NgZone, private translate:TranslateService) {
+    constructor(private zone:NgZone,
+                private translate:TranslateService,
+                private alertCtrl:AlertController) {
         this.setLanguage();
     }
 
@@ -29,7 +30,7 @@ export class LanguageSelectComponent {
     }
 
     private selectLanguage() {
-        let alert = Alert.create({
+        let alert = this.alertCtrl.create({
             title: this.translate.instant("language-select.header"),
             inputs: [
                 {type: 'radio', label: 'English', value: 'en', checked: (this.langCode === "en")},
@@ -49,7 +50,7 @@ export class LanguageSelectComponent {
                 }
             ]
         });
-        this.nav.present(alert);
+        alert.present();
     }
 
     private setLanguage() {

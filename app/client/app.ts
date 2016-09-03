@@ -1,6 +1,6 @@
 import {MeteorComponent} from 'angular2-meteor';
 import {App, Platform} from 'ionic-angular';
-import {Component, NgZone, provide, Type, ViewChild} from '@angular/core';
+import {Component, NgZone, provide, ViewChild} from '@angular/core';
 import {Http, HTTP_PROVIDERS} from '@angular/http';
 import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {MeteorIonicApp} from "./lib/_meteor-ionic-app";
@@ -33,7 +33,7 @@ declare var device;
 })
 class MyApp extends MeteorComponent {
     // Set the root (or first) page
-    private rootPage:Type = HomePage;
+    private rootPage:any = HomePage;
     private pages:Array<IPage>;
     private appName:string;
     private user:Meteor.User;
@@ -176,6 +176,6 @@ class MyApp extends MeteorComponent {
 interface IPage {
     icon?:string,
     title:string,
-    component:Type,
+    component:any,
     rootPage:boolean
 }
