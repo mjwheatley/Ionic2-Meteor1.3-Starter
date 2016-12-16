@@ -1,10 +1,13 @@
-#Updated to Ionic2 Beta 11
+#Refer to my new repo [ionic2-meteor-boilerplate](https://github.com/mjwheatley/ionic2-meteor-boilerplate) to update to the latest framework versions.
 
-###Please review the [Ionic2 changelog](https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
+## Current repo framework versions
 
 ###Meteor 1.4.1.1
 ###Ionic2 Beta 11
 ###Angular rc4
+
+####Updating to these versions?
+Please review the [Ionic2 changelog](https://github.com/driftyco/ionic/blob/master/CHANGELOG.md)
 
 #Getting Started
 ```
